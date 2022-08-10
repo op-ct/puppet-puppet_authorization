@@ -8,5 +8,3 @@ fixtures:
     "hocon":
       "repo": "https://github.com/voxpupuli/puppet-hocon.git"
       "ref": "master"
-  symlinks:
-    "puppet_authorization": "#{source_dir}"
