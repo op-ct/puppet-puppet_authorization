@@ -15,7 +15,7 @@
 #   Absolute path for `auth.conf`
 #
 #
-# @example
+# @example Manage `auth.conf`
 #
 #   puppet_authorization { '/etc/puppetlabs/puppetserver/conf.d/auth.conf':
 #     version                => 1,
