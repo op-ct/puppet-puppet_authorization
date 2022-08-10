@@ -4,7 +4,6 @@ fixtures:
       "repo": "https://github.com/puppetlabs/puppetlabs-stdlib.git"
     "concat":
       "repo": "https://github.com/puppetlabs/puppetlabs-concat.git"
-      "ref": "main"
     "hocon":
       "repo": "https://github.com/voxpupuli/puppet-hocon.git"
-      "ref": "master"
+      "ref": "adoption"
