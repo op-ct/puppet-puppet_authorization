@@ -1,9 +1,9 @@
 fixtures:
   repositories:
     "stdlib":
-      "repo": "https://github.com/puppetlabs/puppetlabs-stdlib.git"
+      repo: "https://github.com/puppetlabs/puppetlabs-stdlib.git"
     "concat":
-      "repo": "https://github.com/puppetlabs/puppetlabs-concat.git"
+      repo: "https://github.com/puppetlabs/puppetlabs-concat.git"
     "hocon":
-      "repo": "https://github.com/voxpupuli/puppet-hocon.git"
-      "ref": "adoption"
+      repo: "https://github.com/voxpupuli/puppet-hocon.git"
+      branch: "adoption"
