@@ -2,7 +2,6 @@ fixtures:
   repositories:
     "stdlib":
       "repo": "https://github.com/puppetlabs/puppetlabs-stdlib.git"
-      "ref": "main"
     "concat":
       "repo": "https://github.com/puppetlabs/puppetlabs-concat.git"
       "ref": "main"
