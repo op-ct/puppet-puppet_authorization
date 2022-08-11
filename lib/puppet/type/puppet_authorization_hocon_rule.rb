@@ -13,7 +13,11 @@ Puppet::Type.newtype(:puppet_authorization_hocon_rule) do
   newparam(:path) do
     desc 'The file Puppet will ensure contains the specified setting.'
     validate do |value|
-      raise(Puppet::Error, "File paths must be fully qualified, not '#{value}'") unless (Puppet.features.posix? && value =~ (%r{^/})) || (Puppet.features.microsoft_windows? && (value =~ (%r{^.:/}) || value =~ (%r{^//[^/]+/[^/]+})))
+      # rubocop:disable Style/IfUnlessModifier
+      unless (Puppet.features.posix? && value =~ %r{^/}) || (Puppet.features.microsoft_windows? && (value =~ %r{^.:/} || value =~ %r{^//[^/]+/[^/]+}))
+        raise(Puppet::Error, "File paths must be fully qualified, not '#{value}'")
+      end
+      # rubocop:enable Style/IfUnlessModifier
     end
   end
 
