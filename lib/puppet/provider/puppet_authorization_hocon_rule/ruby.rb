@@ -11,7 +11,7 @@ Puppet::Type.type(:puppet_authorization_hocon_rule).provide(:ruby) do
   def exists?
     ret_value = false
 
-    if conf_file.has_value?(setting)
+    if conf_file.has_value?(setting) # rubocop:disable Style/PreferredHashMethods
       ret_value = if resource[:ensure] == :absent
                     value.any? do |existing|
                       Array(@resource[:value]).any? { |v| existing['name'] == v['name'] }
@@ -39,7 +39,7 @@ Puppet::Type.type(:puppet_authorization_hocon_rule).provide(:ruby) do
   end
 
   def value
-    val = if conf_file.has_value?(setting)
+    val = if conf_file.has_value?(setting) # rubocop:disable Style/PreferredHashMethods
             conf_object.get_value(setting).unwrapped
           else
             []
