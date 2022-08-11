@@ -9,30 +9,30 @@ describe 'puppet_authorization' do
   context 'defaults' do
     it {
       is_expected.to contain_concat(title).with({
-                                                  path: title,
-                                                  replace: false,
-                                                })
+        path: title,
+        replace: false,
+      })
     }
 
     it {
       is_expected.to contain_concat__fragment("00_header_#{title}").with({
-                                                                           target: title,
-                                                                         }).with_content(%r{authorization: \{\n  rules: \[\]\n})
+        target: title,
+      }).with_content(%r{authorization: \{\n  rules: \[\]\n})
     }
 
     it {
       is_expected.to contain_concat__fragment("99_footer_#{title}").with({
-                                                                           target: title,
-                                                                         }).with_content(%r{\}\n})
+        target: title,
+      }).with_content(%r{\}\n})
     }
 
     it {
       is_expected.to contain_hocon_setting("authorization.version.#{title}").
         that_requires("Concat[#{title}]").with({
-                                                 path: title,
-                                                 setting: 'authorization.version',
-                                                 value: 1,
-                                               })
+          path: title,
+          setting: 'authorization.version',
+          value: 1,
+        })
     }
 
     it {
@@ -40,10 +40,10 @@ describe 'puppet_authorization' do
         "authorization.allow-header-cert-info.#{title}"
       ).
         that_requires("Concat[#{title}]").with({
-                                                 path: title,
-                                                 setting: 'authorization.allow-header-cert-info',
-                                                 value: false,
-                                               })
+          path: title,
+          setting: 'authorization.allow-header-cert-info',
+          value: false,
+        })
     }
   end
 
@@ -59,30 +59,30 @@ describe 'puppet_authorization' do
 
     it {
       is_expected.to contain_concat(title).with({
-                                                  path: '/tmp/foo',
-                                                  replace: true,
-                                                })
+        path: '/tmp/foo',
+        replace: true,
+      })
     }
 
     it {
       is_expected.to contain_concat__fragment("00_header_#{title}").with({
-                                                                           target: title,
-                                                                         }).with_content(%r{authorization: \{\n  rules: \[\]\n})
+        target: title,
+      }).with_content(%r{authorization: \{\n  rules: \[\]\n})
     }
 
     it {
       is_expected.to contain_concat__fragment("99_footer_#{title}").with({
-                                                                           target: title,
-                                                                         }).with_content(%r{\}\n})
+        target: title,
+      }).with_content(%r{\}\n})
     }
 
     it {
       is_expected.to contain_hocon_setting("authorization.version.#{title}").
         that_requires("Concat[#{title}]").with({
-                                                 path: '/tmp/foo',
-                                                 setting: 'authorization.version',
-                                                 value: 2,
-                                               })
+          path: '/tmp/foo',
+          setting: 'authorization.version',
+          value: 2,
+        })
     }
 
     it {
@@ -90,10 +90,10 @@ describe 'puppet_authorization' do
         "authorization.allow-header-cert-info.#{title}"
       ).
         that_requires("Concat[#{title}]").with({
-                                                 path: '/tmp/foo',
-                                                 setting: 'authorization.allow-header-cert-info',
-                                                 value: true,
-                                               })
+          path: '/tmp/foo',
+          setting: 'authorization.allow-header-cert-info',
+          value: true,
+        })
     }
   end
 

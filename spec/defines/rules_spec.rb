@@ -31,19 +31,19 @@ describe 'puppet_authorization::rule', type: :define do
 
     it {
       is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
-                                                                                 ensure: 'present',
-                                                                                 path: '/tmp/foo',
-                                                                                 value: {
-                                                                                   'match-request' => {
-                                                                                     'path'         => '/foo',
-                                                                                     'type'         => 'path',
-                                                                                     'query-params' => {},
-                                                                                   },
-                                                                                   'allow' => 'bar',
-                                                                                   'name' => 'rule',
-                                                                                   'sort-order' => 200,
-                                                                                 },
-                                                                               })
+        ensure: 'present',
+        path: '/tmp/foo',
+        value: {
+          'match-request' => {
+            'path'         => '/foo',
+            'type'         => 'path',
+            'query-params' => {},
+          },
+          'allow' => 'bar',
+          'name' => 'rule',
+          'sort-order' => 200,
+        },
+      })
     }
   end
 
@@ -54,19 +54,19 @@ describe 'puppet_authorization::rule', type: :define do
 
     it {
       is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
-                                                                                 ensure: 'present',
-                                                                                 path: '/tmp/foo',
-                                                                                 value: {
-                                                                                   'match-request' => {
-                                                                                     'path'         => '/foo',
-                                                                                     'type'         => 'path',
-                                                                                     'query-params' => {},
-                                                                                   },
-                                                                                   'allow' => %w[foo bar],
-                                                                                   'name' => 'rule',
-                                                                                   'sort-order' => 200,
-                                                                                 },
-                                                                               })
+        ensure: 'present',
+        path: '/tmp/foo',
+        value: {
+          'match-request' => {
+            'path'         => '/foo',
+            'type'         => 'path',
+            'query-params' => {},
+          },
+          'allow' => %w[foo bar],
+          'name' => 'rule',
+          'sort-order' => 200,
+        },
+      })
     }
   end
 
@@ -87,20 +87,20 @@ describe 'puppet_authorization::rule', type: :define do
 
     it {
       is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
-                                                                                 ensure: 'absent',
-                                                                                 path: '/tmp/bar',
-                                                                                 value: {
-                                                                                   'match-request' => {
-                                                                                     'path'         => '/^.*$/',
-                                                                                     'type'         => 'regex',
-                                                                                     'query-params' => { 'foo' => 'bar' },
-                                                                                     'method'       => 'put',
-                                                                                   },
-                                                                                   'deny' => 'bar',
-                                                                                   'name' => 'newrule',
-                                                                                   'sort-order' => 1,
-                                                                                 },
-                                                                               })
+        ensure: 'absent',
+        path: '/tmp/bar',
+        value: {
+          'match-request' => {
+            'path'         => '/^.*$/',
+            'type'         => 'regex',
+            'query-params' => { 'foo' => 'bar' },
+            'method'       => 'put',
+          },
+          'deny' => 'bar',
+          'name' => 'newrule',
+          'sort-order' => 1,
+        },
+      })
     }
   end
 
@@ -114,20 +114,20 @@ describe 'puppet_authorization::rule', type: :define do
 
     it {
       is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
-                                                                                 ensure: 'present',
-                                                                                 path: '/tmp/foo',
-                                                                                 value: {
-                                                                                   'match-request' => {
-                                                                                     'path'         => '/foo',
-                                                                                     'type'         => 'path',
-                                                                                     'query-params' => {},
-                                                                                   },
-                                                                                   'allow' => %w[foo bar],
-                                                                                   'deny' => %w[baz bim],
-                                                                                   'name' => 'rule',
-                                                                                   'sort-order' => 200,
-                                                                                 },
-                                                                               })
+        ensure: 'present',
+        path: '/tmp/foo',
+        value: {
+          'match-request' => {
+            'path'         => '/foo',
+            'type'         => 'path',
+            'query-params' => {},
+          },
+          'allow' => %w[foo bar],
+          'deny' => %w[baz bim],
+          'name' => 'rule',
+          'sort-order' => 200,
+        },
+      })
     }
   end
 
@@ -141,20 +141,20 @@ describe 'puppet_authorization::rule', type: :define do
 
     it {
       is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
-                                                                                 ensure: 'present',
-                                                                                 path: '/tmp/foo',
-                                                                                 value: {
-                                                                                   'match-request' => {
-                                                                                     'path'         => '/foo',
-                                                                                     'type'         => 'path',
-                                                                                     'query-params' => {},
-                                                                                   },
-                                                                                   'allow' => ['foo', 'bar', { 'extensions' => { 'foo' => 'bar' } }],
-                                                                                   'deny' => { 'extensions' => { 'foo' => %w[bar baz biz] } },
-                                                                                   'name' => 'rule',
-                                                                                   'sort-order' => 200,
-                                                                                 },
-                                                                               })
+        ensure: 'present',
+        path: '/tmp/foo',
+        value: {
+          'match-request' => {
+            'path'         => '/foo',
+            'type'         => 'path',
+            'query-params' => {},
+          },
+          'allow' => ['foo', 'bar', { 'extensions' => { 'foo' => 'bar' } }],
+          'deny' => { 'extensions' => { 'foo' => %w[bar baz biz] } },
+          'name' => 'rule',
+          'sort-order' => 200,
+        },
+      })
     }
   end
 
@@ -168,20 +168,20 @@ describe 'puppet_authorization::rule', type: :define do
 
     it {
       is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
-                                                                                 ensure: 'present',
-                                                                                 path: '/tmp/foo',
-                                                                                 value: {
-                                                                                   'match-request' => {
-                                                                                     'path'         => '/foo',
-                                                                                     'type'         => 'path',
-                                                                                     'query-params' => {},
-                                                                                     'method'       => %w[post get head delete],
-                                                                                   },
-                                                                                   'allow-unauthenticated' => true,
-                                                                                   'name' => 'rule',
-                                                                                   'sort-order' => 200,
-                                                                                 },
-                                                                               })
+        ensure: 'present',
+        path: '/tmp/foo',
+        value: {
+          'match-request' => {
+            'path'         => '/foo',
+            'type'         => 'path',
+            'query-params' => {},
+            'method'       => %w[post get head delete],
+          },
+          'allow-unauthenticated' => true,
+          'name' => 'rule',
+          'sort-order' => 200,
+        },
+      })
     }
   end
 
@@ -338,19 +338,19 @@ describe 'puppet_authorization::rule', type: :define do
 
       it {
         is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
-                                                                                   ensure: 'absent',
-                                                                                   path: '/tmp/foo',
-                                                                                   value: {
-                                                                                     'match-request' => {
-                                                                                       'path'         => empty_value,
-                                                                                       'type'         => empty_value,
-                                                                                       'query-params' => {},
-                                                                                     },
-                                                                                     'allow-unauthenticated' => false,
-                                                                                     'name' => 'rule',
-                                                                                     'sort-order' => 200
-                                                                                   }
-                                                                                 })
+          ensure: 'absent',
+          path: '/tmp/foo',
+          value: {
+            'match-request' => {
+              'path'         => empty_value,
+              'type'         => empty_value,
+              'query-params' => {},
+            },
+            'allow-unauthenticated' => false,
+            'name' => 'rule',
+            'sort-order' => 200
+          }
+        })
       }
     end
   end
