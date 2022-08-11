@@ -2,9 +2,6 @@
 
 require 'spec_helper'
 describe 'puppet_authorization' do
-  let(:facts) do
-    { concat_basedir: '/dne' }
-  end
   let(:title) do
     '/tmp/foo'
   end
