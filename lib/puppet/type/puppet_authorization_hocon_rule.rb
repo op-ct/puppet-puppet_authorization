@@ -53,10 +53,8 @@ Puppet::Type.newtype(:puppet_authorization_hocon_rule) do
 
     def insync?(_is)
       # make sure all passed values are in the file
-      Array(@resource[:value]).each do |v|
-        return false unless provider.value.flatten.include?(v)
-      end
-      true
+      values = provider.value.flatten
+      Array(@resource[:value]).all? { |v| values.include?(v) }
     end
 
     def change_to_s(current, new)
