@@ -30,7 +30,7 @@ describe 'puppet_authorization::rule', type: :define do
     end
 
     it {
-      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
+      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with(
         ensure: 'present',
         path: '/tmp/foo',
         value: {
@@ -42,8 +42,8 @@ describe 'puppet_authorization::rule', type: :define do
           'allow' => 'bar',
           'name' => 'rule',
           'sort-order' => 200,
-        },
-      })
+        }
+      )
     }
   end
 
@@ -53,7 +53,7 @@ describe 'puppet_authorization::rule', type: :define do
     end
 
     it {
-      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
+      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with(
         ensure: 'present',
         path: '/tmp/foo',
         value: {
@@ -65,8 +65,8 @@ describe 'puppet_authorization::rule', type: :define do
           'allow' => %w[foo bar],
           'name' => 'rule',
           'sort-order' => 200,
-        },
-      })
+        }
+      )
     }
   end
 
@@ -86,7 +86,7 @@ describe 'puppet_authorization::rule', type: :define do
     end
 
     it {
-      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
+      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with(
         ensure: 'absent',
         path: '/tmp/bar',
         value: {
@@ -99,8 +99,8 @@ describe 'puppet_authorization::rule', type: :define do
           'deny' => 'bar',
           'name' => 'newrule',
           'sort-order' => 1,
-        },
-      })
+        }
+      )
     }
   end
 
@@ -113,7 +113,7 @@ describe 'puppet_authorization::rule', type: :define do
     end
 
     it {
-      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
+      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with(
         ensure: 'present',
         path: '/tmp/foo',
         value: {
@@ -126,8 +126,8 @@ describe 'puppet_authorization::rule', type: :define do
           'deny' => %w[baz bim],
           'name' => 'rule',
           'sort-order' => 200,
-        },
-      })
+        }
+      )
     }
   end
 
@@ -140,7 +140,7 @@ describe 'puppet_authorization::rule', type: :define do
     end
 
     it {
-      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
+      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with(
         ensure: 'present',
         path: '/tmp/foo',
         value: {
@@ -153,8 +153,8 @@ describe 'puppet_authorization::rule', type: :define do
           'deny' => { 'extensions' => { 'foo' => %w[bar baz biz] } },
           'name' => 'rule',
           'sort-order' => 200,
-        },
-      })
+        }
+      )
     }
   end
 
@@ -167,7 +167,7 @@ describe 'puppet_authorization::rule', type: :define do
     end
 
     it {
-      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
+      is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with(
         ensure: 'present',
         path: '/tmp/foo',
         value: {
@@ -180,8 +180,8 @@ describe 'puppet_authorization::rule', type: :define do
           'allow-unauthenticated' => true,
           'name' => 'rule',
           'sort-order' => 200,
-        },
-      })
+        }
+      )
     }
   end
 
@@ -337,7 +337,7 @@ describe 'puppet_authorization::rule', type: :define do
       let(:params) { { ensure: 'absent', path: '/tmp/foo' } }
 
       it {
-        is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with({
+        is_expected.to contain_puppet_authorization_hocon_rule('rule-rule').with(
           ensure: 'absent',
           path: '/tmp/foo',
           value: {
@@ -350,7 +350,7 @@ describe 'puppet_authorization::rule', type: :define do
             'name' => 'rule',
             'sort-order' => 200
           }
-        })
+        )
       }
     end
   end
