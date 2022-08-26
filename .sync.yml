@@ -1,0 +1,8 @@
+---
+spec/spec_helper.rb:
+  spec_overrides: "require 'spec_helper_local'"
+
+.rubocop.yml:
+  extra_configs:
+    Layout/FirstHashElementIndentation:
+      EnforcedStyle: consistent

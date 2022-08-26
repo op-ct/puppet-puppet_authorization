@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require 'puppet/util/feature'
 if Puppet.features.puppet_authorization?
   require 'hocon/config_factory'
@@ -6,23 +8,18 @@ if Puppet.features.puppet_authorization?
 end
 
 Puppet::Type.type(:puppet_authorization_hocon_rule).provide(:ruby) do
-
   def exists?
-    ret_value = false
+    return false unless conf_file.has_value?(setting) # rubocop:disable Style/PreferredHashMethods
 
-    if conf_file.has_value?(setting)
-      if resource[:ensure] == :absent
-        ret_value = value.any? do |existing|
-          Array(@resource[:value]).any? { |v| existing['name'] == v['name'] }
-        end
-      else
-        ret_value = value.any? do |existing|
-          Array(@resource[:value]).include?(existing)
-        end
+    if resource[:ensure] == :absent
+      value.any? do |existing|
+        Array(@resource[:value]).any? { |v| existing['name'] == v['name'] }
+      end
+    else
+      value.any? do |existing|
+        Array(@resource[:value]).include?(existing)
       end
     end
-
-    return ret_value
   end
 
   def create
@@ -38,17 +35,18 @@ Puppet::Type.type(:puppet_authorization_hocon_rule).provide(:ruby) do
   end
 
   def value
-    val = conf_file.has_value?(setting) ?
-        conf_object.get_value(setting).unwrapped : []
+    val = if conf_file.has_value?(setting) # rubocop:disable Style/PreferredHashMethods
+            conf_object.get_value(setting).unwrapped
+          else
+            []
+          end
 
     # If the current value of the target setting is not an array,
     # present the current value as an empty array so that an
     # element is added to an empty array (as opposed to converting
     # the current value into the first element in an array and
     # adding the value to set as a second element in the array).
-    unless val.is_a?(Array)
-      val = []
-    end
+    val = [] unless val.is_a?(Array)
     val
   end
 
@@ -67,10 +65,9 @@ Puppet::Type.type(:puppet_authorization_hocon_rule).provide(:ruby) do
   end
 
   private
+
   def conf_file
-    if @conf_file.nil? && (not File.exist?(file_path))
-      File.new(file_path, "w")
-    end
+    File.new(file_path, 'w') if @conf_file.nil? && !File.exist?(file_path)
     @conf_file ||= Hocon::Parser::ConfigDocumentFactory.parse_file(file_path)
   end
 
@@ -82,9 +79,7 @@ Puppet::Type.type(:puppet_authorization_hocon_rule).provide(:ruby) do
   end
 
   def conf_object
-    if @conf_file.nil? && (not File.exist?(file_path))
-      File.new(file_path, "w")
-    end
+    File.new(file_path, 'w') if @conf_file.nil? && !File.exist?(file_path)
     Hocon::ConfigFactory.parse_file(file_path)
   end
 
@@ -99,7 +94,7 @@ Puppet::Type.type(:puppet_authorization_hocon_rule).provide(:ruby) do
     conf_file.set_config_value(setting, new_value)
   end
 
-  def set_value(value_to_set)
+  def set_value(value_to_set) # rubocop:disable Naming/AccessorMethodName
     # Prevent duplicate rules by removing existing ones that have the same
     # rule name as the new value_to_set.
     tmp_val = Array(value).reject do |existing|
